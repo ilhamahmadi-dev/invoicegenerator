@@ -15,18 +15,34 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+  
+
     <div class="container my-5">
       <h1 class="text-center mb-4">Invoice Generator</h1>
-
-      <div class="row mb-4 align-items-center">
-        <div class="col-md-3">
-          <label for="tanggal-nota" class="form-label fw-bold"
-            >Tanggal Nota</label
-          >
-          <input type="date" id="tanggal-nota" class="form-control" required />
+      <div id="input-area" class="card shadow p-4 mb-3">
+        <div class="row mb-4 align-items-center">
+          <div class="col-md-3">
+            <label for="tanggal-nota" class="form-label fw-bold"
+              >Tanggal Nota</label
+            >
+            <input
+              type="date"
+              id="tanggal-nota"
+              class="form-control"
+              required
+            />
+          </div>
         </div>
-        <div class="col-md-9 text-muted pt-3">
-          <small>* Atur tanggal transaksi sebelum mulai input barang.</small>
+
+        <div class="mb-5">
+          <label for="keterangan-nota" class="form-label fw-bold"
+            >Keterangan/Catatan Tambahan (Opsional)</label
+          >
+          <input
+            id="keterangan-nota"
+            class="form-control"
+            placeholder="Contoh: Pembayaran untuk acara seminar 2025."
+          ></input>
         </div>
       </div>
 
@@ -73,18 +89,6 @@
             </button>
           </div>
         </form>
-      </div>
-
-      <div class="mb-5">
-        <label for="keterangan-nota" class="form-label fw-bold"
-          >Keterangan/Catatan Tambahan (Opsional)</label
-        >
-        <textarea
-          id="keterangan-nota"
-          class="form-control"
-          rows="2"
-          placeholder="Contoh: Pembayaran untuk acara seminar 2025."
-        ></textarea>
       </div>
 
       <hr />
