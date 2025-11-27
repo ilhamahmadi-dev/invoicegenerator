@@ -3,6 +3,9 @@ const barangInput = document.getElementById('barang')
 const jumlahInput = document.getElementById('jumlah')
 const hargaSatuanInput = document.getElementById('harga-satuan')
 
+// Elemen Baru: Nama Karyawan/Pengaju
+const namaReimburseInput = document.getElementById('nama-reimburse')
+
 // Elemen Baru: Keterangan Nota
 const keteranganNotaInput = document.getElementById('keterangan-nota')
 
@@ -10,8 +13,9 @@ const keteranganNotaInput = document.getElementById('keterangan-nota')
 const tanggalNotaInput = document.getElementById('tanggal-nota')
 const displayTanggal = document.getElementById('display-tanggal')
 
-// Ambil elemen display keterangan
+// Ambil elemen display keterangan dan nama
 const displayKeterangan = document.getElementById('display-keterangan')
+const displayNama = document.getElementById('display-nama') // Elemen display nama
 
 const tabelBody = document.querySelector('#tabel-nota tbody')
 const grandTotalElement = document.getElementById('grand-total')
@@ -22,6 +26,7 @@ const infoKosong = document.getElementById('info-kosong')
 let notaItems = [] // Array untuk menyimpan data barang
 let tanggalNota = '' // Variabel untuk menyimpan tanggal nota
 let keteranganNota = '' // Variabel untuk menyimpan keterangan nota
+let namaReimburse = '' // Variabel Baru: untuk menyimpan nama pengaju
 
 // Fungsi untuk memformat angka menjadi Rupiah (tanpa Rp)
 function formatRupiah(angka) {
@@ -63,13 +68,21 @@ function loadNotaData() {
     keteranganNota = storedKeterangan
     keteranganNotaInput.value = storedKeterangan
   }
+
+  // Muat Nama Karyawan/Pengaju
+  const storedNama = localStorage.getItem('notaReimburseNama')
+  if (storedNama) {
+    namaReimburse = storedNama
+    namaReimburseInput.value = storedNama
+  }
 }
 
 // Fungsi untuk menyimpan data ke LocalStorage
 function saveNotaData() {
   localStorage.setItem('notaReimburseItems', JSON.stringify(notaItems))
   localStorage.setItem('notaReimburseDate', tanggalNota)
-  localStorage.setItem('notaReimburseKeterangan', keteranganNota) // Simpan keterangan
+  localStorage.setItem('notaReimburseKeterangan', keteranganNota)
+  localStorage.setItem('notaReimburseNama', namaReimburse) // Simpan nama
 }
 
 // Fungsi untuk menggambar ulang tabel nota
@@ -77,9 +90,10 @@ function renderNota() {
   tabelBody.innerHTML = ''
   let totalKeseluruhan = 0
 
-  // Tampilkan tanggal dan keterangan (di elemen tersembunyi untuk print)
+  // Tampilkan tanggal, keterangan, dan NAMA
   displayTanggal.textContent = formatDateDisplay(tanggalNota)
   displayKeterangan.textContent = keteranganNota || 'Tidak ada keterangan.'
+  displayNama.textContent = namaReimburse || '--' // Tampilkan nama, default ke '--'
 
   if (notaItems.length === 0) {
     infoKosong.style.display = 'block'
@@ -152,7 +166,7 @@ formInput.addEventListener('submit', (e) => {
   saveNotaData()
   renderNota()
 
-  // Bersihkan input barang, biarkan tanggal tetap
+  // Bersihkan input barang, biarkan tanggal, nama, dan keterangan tetap
   barangInput.value = ''
   jumlahInput.value = ''
   hargaSatuanInput.value = ''
@@ -162,6 +176,13 @@ formInput.addEventListener('submit', (e) => {
 // Event Listener untuk perubahan input tanggal nota
 tanggalNotaInput.addEventListener('change', () => {
   tanggalNota = tanggalNotaInput.value
+  saveNotaData()
+  renderNota()
+})
+
+// Event Listener BARU untuk perubahan Nama Karyawan/Pengaju
+namaReimburseInput.addEventListener('input', () => {
+  namaReimburse = namaReimburseInput.value
   saveNotaData()
   renderNota()
 })
@@ -186,13 +207,15 @@ clearBtn.addEventListener('click', () => {
     )
   ) {
     notaItems = []
-    keteranganNota = '' // Bersihkan juga keterangan
+    keteranganNota = '' // Bersihkan keterangan
+    namaReimburse = '' // Bersihkan nama
 
     // Reset tanggal ke hari ini saat membersihkan
     const today = new Date().toISOString().split('T')[0]
     tanggalNota = today
     tanggalNotaInput.value = today
     keteranganNotaInput.value = '' // Kosongkan input keterangan
+    namaReimburseInput.value = '' // Kosongkan input nama
 
     saveNotaData()
     renderNota()
