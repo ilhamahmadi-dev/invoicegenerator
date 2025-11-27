@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invoice Generator</title>
+    <title>Nota Online Reimburse</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -33,14 +33,26 @@
             />
           </div>
         </div>
-
+          <div class="col-md-5">
+            <label for="nama-reimburse" class="form-label fw-bold"
+              >Nama </label
+            >
+            <input
+              type="text"
+              id="nama-reimburse"
+              class="form-control"
+              placeholder=""
+              required
+            />
+          </div>
         <div class="mb-5">
           <label for="keterangan-nota" class="form-label fw-bold"
-            >Keterangan/Catatan Tambahan (Opsional)</label
+            >Keterangan</label
           >
           <input
             id="keterangan-nota"
-            class="form-control"
+            class="form-control"
+            placeholder="Kegiatan"
           ></input>
         </div>
       </div>
@@ -53,7 +65,8 @@
             <input
               type="text"
               id="barang"
-              class="form-control"
+              class="form-control"
+              placeholder="Contoh: Tiket Kereta"
               required
             />
           </div>
@@ -75,7 +88,8 @@
             <input
               type="number"
               id="harga-satuan"
-              class="form-control"
+              class="form-control"
+              placeholder="50000"
               min="0"
               required
             />
@@ -95,6 +109,10 @@
           <div class="col-sm-6">
             <h2 class="h4 nota-title">Daftar Belanja (Nota)</h2>
             <div id="print-keterangan-placeholder" style="display: none">
+              <p class="mb-1">
+                <span class="fw-bold">Nama Pengaju:</span>
+                <span id="display-nama" class="keterangan-text">--</span>
+              </p>
               <span class="fw-bold">Keterangan:</span>
               <span
                 id="display-keterangan"
