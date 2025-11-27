@@ -9,8 +9,8 @@ body {
 }
 
 /* ===============================
-   2. CONTAINER & SHADOW
-   =============================== */
+     2. CONTAINER & SHADOW
+     =============================== */
 .container {
   background: #ffffff;
   border-radius: 12px;
@@ -30,8 +30,8 @@ hr {
 }
 
 /* ===============================
-   3. INPUT & BUTTONS 
-   =============================== */
+     3. INPUT & BUTTONS 
+     =============================== */
 #input-area {
   border: 1px solid #e9ecef !important;
   border-radius: 8px !important;
@@ -62,8 +62,8 @@ hr {
 }
 
 /* ===============================
-   4. NOTA HEADER & KETERANGAN (LIVE UI)
-   =============================== */
+     4. NOTA HEADER & KETERANGAN (LIVE UI)
+     =============================== */
 .nota-title {
   color: #343a40;
   font-weight: 700;
@@ -85,8 +85,8 @@ hr {
 }
 
 /* ===============================
-   5. NOTA (TABLE) - GAYA UNGU MODERN (Live UI)
-   =============================== */
+     5. NOTA (TABLE) - GAYA UNGU MODERN (Live UI)
+     =============================== */
 #nota-area {
   padding: 20px !important;
   border-radius: 12px !important;
@@ -155,8 +155,8 @@ hr {
 }
 
 /* ===============================
-   6. PRINT STYLES (Minimalis A4 - Hapus Aksi & Pindah Keterangan)
-   =============================== */
+     6. PRINT STYLES (Minimalis A4 - Hapus Aksi & Pindah Keterangan)
+     =============================== */
 @page {
   size: A4;
   margin: 1cm;
@@ -188,8 +188,8 @@ hr {
 
   /* HIDE 'Aksi' column in print view */
   #tabel-nota th:nth-child(6), /* Header Aksi */
-    #tabel-nota td:nth-child(6), /* Data Aksi */
-    #tabel-nota tfoot td:last-child {
+      #tabel-nota td:nth-child(6), /* Data Aksi */
+      #tabel-nota tfoot td:last-child {
     /* Sel Aksi di Footer */
     display: none !important;
   }
@@ -210,7 +210,7 @@ hr {
     margin-bottom: 5px !important;
   }
 
-  /* 3. TAMPILKAN Keterangan di bawah Judul Nota */
+  /* 3. TAMPILKAN Keterangan (termasuk Nama) di bawah Judul Nota */
   #print-keterangan-placeholder {
     display: block !important;
     padding: 0 !important;
